@@ -1,0 +1,79 @@
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<!--
+  `deko-card`
+  @demo demo/index.html
+-->
+
+<dom-module id="deko-opened-card">
+  <template>
+    <div inner-h-t-m-l="[[_getHtml(card,edit)]]"></div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "deko-opened-card",
+    properties:{
+      // This is what is displayed before it is used.
+      card:Object,
+    },
+    _getHtml: function(card, edit){
+      var output
+      if (card._output) {
+        output = card._output + ""
+        for (var attr in card) {
+          if (attr !== "_data" || attr !== "_output") {
+            //replace {{}}
+            re = new RegExp("{{"+attr+"}}", "gim")
+            output = output.replace(re, card[attr])
+          }
+        }
+      } else {
+        var outputType
+        if (card.outputType) {
+          outputType = card.outputType
+        } else if (card.cardType) {
+          outputType = card.cardType
+        } else {
+          outputType = "link-display"  
+        }
+        var outputContent
+        if (card.content) {
+          outputContent = card.content
+        } else {
+          outputContent = ""
+        }
+        var outAttrs = "opened"
+        if (edit) {
+          outAttrs = " edit"
+        }
+        for (var attr in card) {
+          if (attr !== "_data" || attr !== "output") {
+            //replace {{}}
+            re = new RegExp("{{"+attr+"}}", "gim")
+            var theString
+            if (typeof card[attr] === 'object') {
+              theString =  JSON.stringify(card[attr] )
+            } else {
+              theString = card[attr] + ""
+            }
+            outputContent = outputContent.replace(re, card[attr] )
+            
+            if (attr ) {
+            }
+            outAttrs = outAttrs + " " + attr.split("_").join("") + "='" + theString + "' " 
+          }
+        }
+        output = "<"+ outputType + outAttrs + " >" + outputContent + "</"+ outputType + ">"
+      }
+      return output
+    },
+    _openEdit : function() {
+      if (this.card) {
+        this.fire("edit", this.card)
+      }
+    }
+  })
+</script>
