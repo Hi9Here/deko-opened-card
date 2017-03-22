@@ -56,10 +56,10 @@
           outputContent = ""
         }
         var outAttrs = ""
-        if (this.pillar) {
-          outAttrs = "opened pillar='" + JSON.stringify(this.pillar) + "'" 
+        if (Object.key(pillar)) {
+          outAttrs = " opened pillar='" + JSON.stringify(pillar) + "'" 
         } else {
-          outAttrs = "opened"
+          outAttrs = " opened"
         }
         
         if (edit) {
