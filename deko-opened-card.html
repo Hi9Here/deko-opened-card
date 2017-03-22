@@ -9,7 +9,7 @@
 
 <dom-module id="deko-opened-card">
   <template>
-    <div inner-h-t-m-l="[[_getHtml(card,edit)]]"></div>
+    <div inner-h-t-m-l="[[theHtml]]"></div>
   </template>
 </dom-module>
 <script>
@@ -21,7 +21,13 @@
       // edit
       edit:{
         value:true
-      }
+      },
+      pillar: {
+        value: {}
+      },
+      theHtml: {
+        computed:"_getHtml(card,edit,pillar)"
+      },
     },
     _getHtml: function(card, edit){
       var output
