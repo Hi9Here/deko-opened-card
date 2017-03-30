@@ -64,7 +64,9 @@
         } else {
           outAttrs = " opened"
         }
-        
+        if (this.profile) {
+          outAttrs = outAttrs + " profile='" + JSON.stringify(this.profile) + "'" 
+        }        
         if (edit) {
           outAttrs = " edit"
         }
