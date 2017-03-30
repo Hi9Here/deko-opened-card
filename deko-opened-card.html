@@ -20,16 +20,17 @@
       card:Object,
       // edit
       edit:{
-        value:true
+        value:true,
       },
       pillar: {
-        value: {}
+        value: {},
       },
       profile:{
-        type: Object
+        type: Object,
+        value: {}
       },
       theHtml: {
-        computed:"_getHtml(card,edit,pillar)"
+        computed:"_getHtml(card,edit,pillar,profile)"
       },
     },
     _getHtml: function(card, edit, pillar){
@@ -64,7 +65,7 @@
         } else {
           outAttrs = " opened"
         }
-        if (this.profile) {
+        if (Object.keys(this.profile)) {
           outAttrs = outAttrs + " profile='" + JSON.stringify(this.profile) + "'" 
         }        
         if (edit) {
