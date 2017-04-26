@@ -19,11 +19,9 @@
       // This is what is displayed before it is used.
       card:Object,
       // edit
-      _edit:{
-        computed:"isEditable(card.profile,profile.__key)",
-      },
       edit: {
-        value: false
+        type: Boolean,
+        value: false,
       },
       pillar: {
         value: {},
@@ -35,9 +33,6 @@
       theHtml: {
         computed:"_getHtml(card,edit,pillar,profile)"
       },
-    },
-    isEditable: function(cardMadeByProfile,userProfile) {
-      return cardMadeByProfile == userProfile // needs to test writable list
     },
     _getHtml: function(card, edit, pillar, profile){
       var output
