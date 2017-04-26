@@ -19,8 +19,11 @@
       // This is what is displayed before it is used.
       card:Object,
       // edit
-      edit:{
+      _edit:{
         computed:"isEditable(card.profile,profile.__key)",
+      },
+      edit: {
+        value: false
       },
       pillar: {
         value: {},
