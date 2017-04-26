@@ -67,10 +67,10 @@
           outAttrs = " opened "
         }
         if (Object.keys(profile)) {
-          outAttrs = outAttrs + " profile='" + JSON.stringify(this.profile) + "'" 
+          outAttrs = outAttrs + " profile='" + JSON.stringify(this.profile) + "' " 
         }        
         if (edit) {
-          outAttrs = " edit"
+          outAttrs = outAttrs + " edit "
         }
         for (var attr in card) {
           if (attr !== "_data" || attr !== "output") {
