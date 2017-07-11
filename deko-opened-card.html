@@ -69,6 +69,9 @@
         if (edit) {
           outAttrs = outAttrs + " edit "
         }
+        if (deck) {
+          outAttrs = outAttrs + ' deck="' + deck + '" '
+        }
         for (var attr in card) {
           if (attr !== "_data" || attr !== "output") {
             //replace {{}}
