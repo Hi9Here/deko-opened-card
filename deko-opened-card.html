@@ -29,12 +29,9 @@
       pillar: {
         value: {},
       },
-      profile:{
-        type: Object,
-        value: {}
-      },
+      deck: String,
       theHtml: {
-        computed:"_getHtml(card,edit,pillar, deck)"
+        computed:"_getHtml(card,edit,pillar,deck)"
       },
     },
     _getHtml: function(card, edit, pillar, deck){
