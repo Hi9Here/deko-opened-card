@@ -34,10 +34,10 @@
         value: {}
       },
       theHtml: {
-        computed:"_getHtml(card,edit,pillar,profile)"
+        computed:"_getHtml(card,edit,pillar, deck)"
       },
     },
-    _getHtml: function(card, edit, pillar, profile){
+    _getHtml: function(card, edit, pillar, deck){
       var output
       if (card._output) {
         output = card._output + ""
@@ -68,10 +68,7 @@
           outAttrs = " opened pillar='" + JSON.stringify(pillar) + "' " 
         } else {
           outAttrs = " opened "
-        }
-        if (Object.keys(profile)) {
-          outAttrs = outAttrs + " profile='" + JSON.stringify(this.profile) + "' " 
-        }        
+        }   
         if (edit) {
           outAttrs = outAttrs + " edit "
         }
