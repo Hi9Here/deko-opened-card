@@ -98,7 +98,7 @@
             }
             that.unsubQuill = ref.collection("image").orderBy("time").limit(1).onSnapshot(function(quill) {
               if (quill && quill.size) {
-                that.set("quill", image.docs[0].data().value)
+                that.set("quill", quill.docs[0].data().value)
               } else {
                 that.set("quill", "")
               }
