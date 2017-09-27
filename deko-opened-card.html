@@ -1,6 +1,5 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../iron-media-query/iron-media-query.html">
-<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
@@ -14,59 +13,15 @@
   <template>
     <style>
       :host {display:block}
-      paper-material {
-        background-color: #fafafa;
-        color: #212121;
-        height: var(--deko-card-height, 260px);
-        width: var(--deko-card-width, 200px);
-        display: inline-block;
-        margin: 5px;
-        overflow: hidden;
-        cursor: pointer; 
-        cursor: hand;
-      }
-      paper-toolbar {
-        --paper-toolbar-sm-height: 35px;
-        --paper-toolbar-height: 35px;
-        box-shadow: 0 -2px 0px 0 rgba(0, 0, 0, 0.14),
-                    0 -1px 0px 0 rgba(0, 0, 0, 0.12),
-                    0 -3px 1px -2px rgba(0, 0, 0, 0.2);
-      }
     </style>
-    <paper-material elevation="1">
-      <paper-toolbar style$="background:[[_bg]];color:[[_fg]]">
-        <iron-icon icon="[[icon]]" style="height:90%"></iron-icon>
-        <div class="title" ></div>
-        <template is="dom-if" if="[[edit]]">
-          <iron-icon id="edit" on-tap="openoptions" icon="more-vert" style="height:90%"></iron-icon>
-        </template>
-      </paper-toolbar>
-      <img src="[[image]]" style="width: 100%;" />
-      <h3>[[title]]</h3>
-      <p>[[description]]</p>
-      <quill-js show value="[[quill]]"></quill-js>
-    </paper-material>
+    <img src="[[image]]" style="width: 100%;" />
+    <quill-js show value="[[quill]]" theme="bubble"></quill-js>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: "deko-opened-card",
     properties:{
-      // If true, the edit button appears.
-      edit:{
-        type:Boolean,
-        value:false,
-      },
-      icon:String,
-      toolbarColor:String,
-      _bg:{
-        type:String,
-        computed:"getBg(toolbarColor,title)",
-      },
-      _fg:{
-        type:String,
-        computed:"getFg(_bg)",
-      },
       _getData: {
         computed:"setValues(ref)",
       },
@@ -105,22 +60,6 @@
             // that.set( "description", doc.data().description)
           }
         })
-      }
-    },
-    getBg: function(color, title){
-      return color || Please.make_color({from_hash: title})
-    },
-    getFg: function(bg){
-      var c = bg.substring(1);     // strip #
-      var rgb = parseInt(c, 16);   // convert rrggbb to decimal
-      var r = (rgb >> 16) & 0xff;  // extract red
-      var g = (rgb >>  8) & 0xff;  // extract green
-      var b = (rgb >>  0) & 0xff;  // extract blue
-      var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
-      if (luma > 128) {
-        return "#000"
-      } else {
-        return "#FFF"
       }
     },
   })
