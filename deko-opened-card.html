@@ -33,7 +33,7 @@
       }
       if (ref) {
         this.unsub = ref.onSnapshot(function(doc) {
-          if (doc) {
+          if (doc && doc.exists) {
             if (that.unsubImage) {
               that.unsubImage()
             }
@@ -60,6 +60,9 @@
             // that.set( "description", doc.data().description)
           }
         })
+      } else {
+        // TODO delete all under it 
+        that.unsub()
       }
     },
   })
