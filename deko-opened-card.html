@@ -62,8 +62,9 @@
           }
         })
       } else {
-        // TODO delete all under it 
         that.unsub()
+        that.unsubQuill()
+        that.unsubImage()
       }
     },
   })
