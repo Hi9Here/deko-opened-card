@@ -32,7 +32,7 @@
             if (that.unsubImage) {
               that.unsubImage()
             }
-            that.unsubImage = ref.collection("big image").orderBy("time").limit(1).onSnapshot(function(image) {
+            that.unsubImage = ref.collection("big image").orderBy("time", "desc").limit(1).onSnapshot(function(image) {
               if (image && image.size) {
                 that.set("image", image.docs[0].data().value)
               } else {
@@ -46,7 +46,7 @@
             if (that.unsubQuill) {
               that.unsubQuill()
             }
-            that.unsubQuill = ref.collection("quill").orderBy("time").limit(1).onSnapshot(function(quill) {
+            that.unsubQuill = ref.collection("quill").orderBy("time", "desc").limit(1).onSnapshot(function(quill) {
               if (quill && quill.size) {
                 that.set("quill", quill.docs[0].data().value)
               } else {
