@@ -59,13 +59,13 @@
             
             that.set( "title", doc.data().title)
             // that.set( "description", doc.data().description)
+          } else if (!doc.exists) {
+            that.unsub()
+            that.unsubQuill()
+            that.unsubImage()
           }
         })
-      } else {
-        that.unsub()
-        that.unsubQuill()
-        that.unsubImage()
-      }
+      } 
     },
   })
 </script>
