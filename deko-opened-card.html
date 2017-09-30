@@ -38,9 +38,6 @@
               } else {
                 that.set("image", "")
               }
-              if (!image.exists){
-                that.unsubImage()
-              }
             })
             
             if (that.unsubQuill) {
@@ -51,9 +48,6 @@
                 that.set("quill", quill.docs[0].data().value)
               } else {
                 that.set("quill", "")
-              }
-              if (!quill.exists){
-                that.unsubQuill()
               }
             })
             
