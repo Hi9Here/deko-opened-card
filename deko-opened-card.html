@@ -9,7 +9,6 @@
     <style>
       :host {display:block}
     </style>
-    <img src="[[image]]" style="max-width:100%" />
     <quill-js show value="[[quill]]" theme="bubble"></quill-js>
   </template>
 </dom-module>
@@ -29,17 +28,6 @@
       if (ref) {
         this.unsub = ref.onSnapshot(function(doc) {
           if (doc && doc.exists) {
-            if (that.unsubImage) {
-              that.unsubImage()
-            }
-            that.unsubImage = ref.collection("big image").orderBy("time", "desc").limit(1).onSnapshot(function(image) {
-              if (image && image.size) {
-                that.set("image", image.docs[0].data().value)
-              } else {
-                that.set("image", "")
-              }
-            })
-            
             if (that.unsubQuill) {
               that.unsubQuill()
             }
@@ -50,13 +38,11 @@
                 that.set("quill", "")
               }
             })
-            
             that.set( "title", doc.data().title)
             // that.set( "description", doc.data().description)
           } else if (!doc.exists) {
             that.unsub()
             that.unsubQuill()
-            that.unsubImage()
           }
         })
       } 
