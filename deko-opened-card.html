@@ -32,6 +32,10 @@
             that.unsubQuill = ref.collection("quill").orderBy("time", "desc").limit(1).onSnapshot(function(quill) {
               if (quill && quill.size) {
                 that.set("quill", quill.docs[0].data().value)
+                console.log(quill.docs[0].ref.parent.parent.id)
+                console.log(that.ref.id)
+                
+                console.log(quill.docs[0].ref.parent.parent.id == that.ref.id)
               } else {
                 that.set("quill", "")
               }
