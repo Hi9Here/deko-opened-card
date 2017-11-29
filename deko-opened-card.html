@@ -15,11 +15,9 @@
 <script>
   Polymer({
     is: "deko-opened-card",
-    properties:{
-      _getData: {
-        computed:"setValues(ref)",
-      },
-    },
+    observers: [
+      'setValues(ref)'
+    ],
     setValues: function(ref){
       var that = this
       if (this.unsub) {
